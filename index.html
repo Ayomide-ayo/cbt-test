@@ -212,17 +212,18 @@
     questionContainer.innerHTML += `<p class="question">${currentQuestion.question}</p>`
     console.log(currentQuestionIndex, 'on line 92');
    
-    Object.entries(options).forEach(([key, value]) => {
+    for (let key in options) {
+      let value = options[key];
       questionContainer.innerHTML += `    
          <div class="option"> 
              <input type="radio" name="options" id="options" value="${key}">
              <label for="${key}">${key} : ${value}</label>
         </div>
       `
-    })
+    }
     questionContainer.innerHTML += `
     <div class="buttons">
-      <button id="previousBtn" style="display: ${currentQuestionIndex === 0 ? 'none' : 'inline-block'}" onclick="previous()" class="previous">Previous</button>
+      <button id="previousBtn" style="display:${currentQuestionIndex === 0 ? 'none' : 'inline-block'}" onclick="previous()" class="previous">Previous</button>
        <button id="nextBtn" class="next" onclick="${currentQuestionIndex === arr.length - 1 ? 'submit()' : 'next()'}">
       ${currentQuestionIndex === arr.length - 1 ? 'Submit' : 'Next'}
     </button>
